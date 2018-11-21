@@ -1,0 +1,3 @@
+<launch>
+  <node name="line_detector_node" pkg="line_detector" type="main.py" />
+</launch>
