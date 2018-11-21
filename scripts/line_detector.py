@@ -120,14 +120,30 @@ class lineDetector:
         print "X = " + str(x) + " Y = " + str(y)
         post = 0
         
-        if ((x > 0) & (x < 300)):
-            post = "Left"
+        # Definition positions
+        # Norte N
+        if ((y <= -(x/2) + 768) & (y <= (x/2) + 256)):
+            post = "Norte"
 
-        elif ((x > 300) & (x < 500)):
-            post = "Center"
+        # Nor-nordeste NNE
+        #elif ((x > 300) & (x < 500)):
+        #    post = "Nor-nordeste"
 
-        elif (x > 500):
-            post = "Right"
+        # Nordeste NE
+        elif (y > -(x/2) + 768):
+            post = "Nordeste"
+
+        # Nor-noroeste
+        # elif (x > 500):
+        #     post = "NNO"
+
+        # Noroeste NO
+        elif (y > (x/2) + 256):
+            post = "Noroeste"
+
+        # elif (x > 500):
+        #     post = "ONO"
+
 
         else:
             print("ERROR!")
@@ -183,7 +199,8 @@ class lineDetector:
             rect = cv2.rectangle(bgr.copy(), (x,y), (x+w,y+h), (255, 0, 0), 2)
             font = cv2.FONT_HERSHEY_SIMPLEX
             cv2.putText(rect, str(position) ,((x+h/2),(y+h/2)), font, 1, (0,0,255) , 5, cv2.LINE_AA)
-            cv2.putText(canvas, str("X: " + str(int((x+w/2))) + " " + "Y: " + str(int((y+h/2)))) + " : " + str(position),((x+w/2) + 20,(y+h/2) + 20), font, 1, (180,80,200) , 5, cv2.LINE_AA)
+            #cv2.putText(canvas, str("X: " + str(int((x+w/2))) + " " + "Y: " + str(int((y+h/2)))) + " : " + str(position),((x+w/2) + 20,(y+h/2) + 20), font, 1, (180,80,200) , 5, cv2.LINE_AA)
+            cv2.putText(canvas, str(position),((x+w/2) + 20,(y+h/2) + 20), font, 1, (180,80,200) , 5, cv2.LINE_AA)
             
             #frames_view = np.hstack([bgr,cv2.cvtColor(trail.copy(), cv2.COLOR_GRAY2BGR), rect, canvas])            
             #cv2.namedWindow('keypoints', cv2.WINDOW_NORMAL)
